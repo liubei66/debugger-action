@@ -6,3 +6,9 @@ jobs:
     steps:
     - name: Setup Debug Session
       uses: csexton/debugger-action@master
+      
+    - name : Upload artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: lean-lede-sourcecode
+        path: openwrt/bin/
