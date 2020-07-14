@@ -10,5 +10,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: lede-code01
+        name: lede-code
         path: openwrt/bin/
