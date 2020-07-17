@@ -6,7 +6,12 @@ jobs:
     steps:
     - name: Setup Debug Session
       uses: csexton/debugger-action@master
-      
+    - name: Upload firmware to cowtransfer
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        tar -zcvpf bin.tar.gz openwrt/bin
+        ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress bin.tar.gz 2>&1 | tee cowtransfer.log
+        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
